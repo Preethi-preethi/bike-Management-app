@@ -1,0 +1,272 @@
+:root {
+  /* Google Colors */
+  --google-blue: #4285F4;
+  --google-red: #EA4335;
+  --google-yellow: #FBBC05;
+  --google-green: #34A853;
+  
+  --bg-main: #f8fafd;
+  --text-main: #202124;
+  --text-muted: #5f6368;
+  
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(66, 133, 244, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(234, 67, 53, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(52, 168, 83, 0.08) 0%, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-xl);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* Layout */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  padding: 16px;
+  gap: 16px;
+}
+
+.sidebar {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top-nav {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.page-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* Typography */
+h1 { font-size: 28px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
+h2 { font-size: 20px; font-weight: 600; color: var(--text-main); margin-bottom: 16px; }
+.text-muted { color: var(--text-muted); font-size: 14px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background: var(--google-blue);
+  color: white;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.btn-primary:hover {
+  background: #3367D6;
+  box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-success { background: var(--google-green); color: white; }
+.btn-success:hover { background: #2b8b45; }
+.btn-danger { background: var(--google-red); color: white; }
+.btn-danger:hover { background: #c53929; }
+.btn-warning { background: var(--google-yellow); color: #202124; }
+.btn-warning:hover { background: #d9a204; }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #dadce0;
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #dadce0;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--google-blue);
+  box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.1);
+  background: #ffffff;
+}
+
+/* Sidebar Nav */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  background: rgba(66, 133, 244, 0.08);
+  color: var(--google-blue);
+}
+
+.nav-item.active {
+  background: rgba(66, 133, 244, 0.12);
+  color: var(--google-blue);
+  font-weight: 600;
+}
+
+/* Tables / Data Grids */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 16px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.data-table td {
+  padding: 16px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge-blue { background: rgba(66, 133, 244, 0.1); color: var(--google-blue); }
+.badge-green { background: rgba(52, 168, 83, 0.1); color: var(--google-green); }
+.badge-yellow { background: rgba(251, 188, 5, 0.1); color: #c49000; }
+.badge-red { background: rgba(234, 67, 53, 0.1); color: var(--google-red); }
+
+/* Kanban Board */
+.kanban-board {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.kanban-column {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(0,0,0,0.02);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+
+.kanban-col-header {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-main);
+}

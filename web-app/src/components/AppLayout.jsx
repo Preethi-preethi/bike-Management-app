@@ -35,7 +35,7 @@ export default function AppLayout({ role }) {
       <div className="sidebar">
         <Link to="/" className="sidebar-logo">
           <Wrench size={28} />
-          <span>Velorix</span>
+          <span>Vaibav Bajaj</span>
         </Link>
         <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '16px', textTransform: 'uppercase' }}>
           {role} Portal

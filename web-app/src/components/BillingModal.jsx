@@ -16,6 +16,7 @@ export default function BillingModal({ task, serviceItems, onClose }) {
         <div style={{ flex: 1, padding: '32px', background: 'var(--bg-card)', borderRight: '1px solid var(--border-color)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
             <div>
+              <h4 style={{ margin: 0, fontSize: '18px', color: 'var(--text-main)' }}>Vaibav Bajaj Service Center</h4>
               <h2 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-main)', marginBottom: '4px' }}>Invoice</h2>
               <p style={{ color: 'var(--text-muted)' }}>INV-{Date.now().toString().slice(-6)}</p>
             </div>

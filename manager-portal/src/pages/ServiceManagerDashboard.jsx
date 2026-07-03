@@ -7,17 +7,17 @@ import BillingModal from '../components/BillingModal';
 const initialColumns = {
   'col-1': {
     id: 'col-1',
-    title: 'New Requests',
+    title: 'New / Full Checkup',
     taskIds: ['task-1', 'task-2'],
   },
   'col-2': {
     id: 'col-2',
-    title: 'In Progress',
+    title: 'Pending Approval',
     taskIds: ['task-3'],
   },
   'col-3': {
     id: 'col-3',
-    title: 'Quality Check',
+    title: 'In Progress',
     taskIds: ['task-4'],
   },
   'col-4': {
@@ -28,21 +28,31 @@ const initialColumns = {
 };
 
 const initialTasks = {
-  'task-1': { id: 'task-1', customer: 'Alice Johnson', bike: 'Yamaha R15', priority: 'High', type: 'General Service' },
-  'task-2': { id: 'task-2', customer: 'Bob Brown', bike: 'Honda CBR', priority: 'Medium', type: 'Oil Change' },
-  'task-3': { id: 'task-3', customer: 'Charlie Davis', bike: 'Kawasaki Ninja', priority: 'High', type: 'Engine Repair' },
-  'task-4': { id: 'task-4', customer: 'Diana Prince', bike: 'Triumph', priority: 'Low', type: 'Chain Lube' },
+  'task-1': { id: 'task-1', customer: 'Alice Johnson', bike: 'Yamaha R15', priority: 'High', type: 'General Service', colId: 'col-1' },
+  'task-2': { id: 'task-2', customer: 'Bob Brown', bike: 'Honda CBR', priority: 'Medium', type: 'Oil Change', colId: 'col-1' },
+  'task-3': { id: 'task-3', customer: 'Charlie Davis', bike: 'Kawasaki Ninja', priority: 'High', type: 'Engine Repair', colId: 'col-2' },
+  'task-4': { id: 'task-4', customer: 'Diana Prince', bike: 'Triumph', priority: 'Low', type: 'Chain Lube', colId: 'col-3' },
 };
 
 export default function ServiceManagerDashboard() {
   const [columns, setColumns] = useState(initialColumns);
-  const [tasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState(initialTasks);
   const [columnOrder] = useState(['col-1', 'col-2', 'col-3', 'col-4']);
 
   const [selectedTask, setSelectedTask] = useState(null);
   const [billingData, setBillingData] = useState(null);
 
-  const openJobCard = (task) => setSelectedTask(task);
+  const openJobCard = (task) => {
+    // Find which column this task is currently in to pass it down
+    let currentColId = 'col-1';
+    for (const col of Object.values(columns)) {
+      if (col.taskIds.includes(task.id)) {
+        currentColId = col.id;
+        break;
+      }
+    }
+    setSelectedTask({ ...task, colId: currentColId });
+  };
   const closeJobCard = () => setSelectedTask(null);
 
   const openBilling = (task, serviceItems) => {
@@ -50,6 +60,43 @@ export default function ServiceManagerDashboard() {
     setBillingData({ task, serviceItems });
   };
   const closeBilling = () => setBillingData(null);
+
+  const moveTaskToColumn = (taskId, targetColId) => {
+    let sourceColId = null;
+    for (const col of Object.values(columns)) {
+      if (col.taskIds.includes(taskId)) {
+        sourceColId = col.id;
+        break;
+      }
+    }
+
+    if (sourceColId && sourceColId !== targetColId) {
+      setColumns(prev => {
+        const sourceTaskIds = Array.from(prev[sourceColId].taskIds);
+        sourceTaskIds.splice(sourceTaskIds.indexOf(taskId), 1);
+        
+        const targetTaskIds = Array.from(prev[targetColId].taskIds);
+        targetTaskIds.push(taskId);
+
+        return {
+          ...prev,
+          [sourceColId]: { ...prev[sourceColId], taskIds: sourceTaskIds },
+          [targetColId]: { ...prev[targetColId], taskIds: targetTaskIds }
+        };
+      });
+      // Optionally update the selected task state if it's open so the modal refreshes
+      setSelectedTask(prev => prev && prev.id === taskId ? { ...prev, colId: targetColId } : prev);
+    }
+  };
+
+  const updateTask = (taskId, updates) => {
+    setTasks(prev => ({
+      ...prev,
+      [taskId]: { ...prev[taskId], ...updates }
+    }));
+    // Also update selectedTask if it's currently open
+    setSelectedTask(prev => prev && prev.id === taskId ? { ...prev, ...updates } : prev);
+  };
 
   const onDragEnd = result => {
     const { destination, source, draggableId } = result;
@@ -76,6 +123,12 @@ export default function ServiceManagerDashboard() {
     const newFinish = { ...finish, taskIds: finishTaskIds };
 
     setColumns({ ...columns, [newStart.id]: newStart, [newFinish.id]: newFinish });
+    
+    // Update task's colId reference
+    setTasks(prev => ({
+        ...prev,
+        [draggableId]: { ...prev[draggableId], colId: newFinish.id }
+    }));
   };
 
   return (
@@ -156,6 +209,8 @@ export default function ServiceManagerDashboard() {
           task={selectedTask} 
           onClose={closeJobCard} 
           onGenerateBill={openBilling} 
+          moveTaskToColumn={moveTaskToColumn}
+          updateTask={updateTask}
         />
       )}
 

@@ -5,7 +5,6 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import ServiceManagerDashboard from './pages/ServiceManagerDashboard';
 import SuperAdminDashboard from './pages/SuperAdminDashboard';
-import FreeTrialRegister from './pages/FreeTrialRegister';
 import AdminUsers from './pages/AdminUsers';
 import AdminServiceRequests from './pages/AdminServiceRequests';
 import CustomerRegister from './pages/CustomerRegister';
@@ -15,9 +14,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/free-trial" />} />
+        <Route path="/" element={<Navigate to="/booking" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/free-trial" element={<FreeTrialRegister />} />
         <Route path="/customer-register" element={<CustomerRegister />} />
         <Route path="/booking" element={<CustomerBooking />} />
         

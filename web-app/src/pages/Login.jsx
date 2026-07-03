@@ -25,7 +25,7 @@ export default function Login() {
             <Wrench size={32} color="var(--primary)" />
           </div>
           <div>
-            <h1 style={{ fontSize: '36px', fontWeight: 800, margin: 0 }}>Velorix</h1>
+            <h1 style={{ fontSize: '36px', fontWeight: 800, margin: 0 }}>Vaibav Bajaj</h1>
             <p style={{ opacity: 0.9, margin: 0 }}>Modernize Your Bike Service</p>
           </div>
         </div>

@@ -54,20 +54,20 @@ export default function CustomerRegister() {
         
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#1e3a8a', letterSpacing: '-1px', marginBottom: '8px' }}>
-            Initialize Account
+          <h1 style={{ fontSize: '32px', fontWeight: 900, color: '#111827', letterSpacing: '-1px', marginBottom: '8px' }}>
+            Vaibav Bajaj
           </h1>
           <p style={{ color: '#4b5563', fontSize: '15px' }}>
-            Establish your rider profile to access Velorix services.
+            Create your account to access Vaibav Bajaj services.
           </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           
-          {/* Pilot Name */}
+          {/* Full Name */}
           <div style={{ position: 'relative' }}>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Pilot Name</label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Full Name</label>
             <div style={{ position: 'relative' }}>
               <User size={18} color="#6b7280" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               <input 
@@ -88,9 +88,9 @@ export default function CustomerRegister() {
             </div>
           </div>
 
-          {/* Comms Number */}
+          {/* Phone Number */}
           <div style={{ position: 'relative' }}>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Comms Number</label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Phone Number</label>
             <div style={{ position: 'relative' }}>
               <Phone size={18} color="#6b7280" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               <input 
@@ -98,7 +98,7 @@ export default function CustomerRegister() {
                 name="commsNumber"
                 value={formData.commsNumber}
                 onChange={handleChange}
-                placeholder="+1 (555) 000-0000"
+                placeholder="+91 9876543210"
                 required
                 style={{
                   width: '100%', padding: '14px 14px 14px 44px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.5)',
@@ -111,9 +111,9 @@ export default function CustomerRegister() {
             </div>
           </div>
 
-          {/* Access Email */}
+          {/* Email Address */}
           <div style={{ position: 'relative' }}>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Access Email</label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Email Address</label>
             <div style={{ position: 'relative' }}>
               <Mail size={18} color="#6b7280" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               <input 
@@ -121,7 +121,7 @@ export default function CustomerRegister() {
                 name="accessEmail"
                 value={formData.accessEmail}
                 onChange={handleChange}
-                placeholder="rider@example.com"
+                placeholder="customer@example.com"
                 required
                 style={{
                   width: '100%', padding: '14px 14px 14px 44px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.5)',
@@ -134,9 +134,9 @@ export default function CustomerRegister() {
             </div>
           </div>
 
-          {/* Security Key */}
+          {/* Password */}
           <div style={{ position: 'relative', marginBottom: '12px' }}>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Security Key</label>
+            <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#374151', textTransform: 'uppercase', marginBottom: '6px', marginLeft: '4px' }}>Password</label>
             <div style={{ position: 'relative' }}>
               <Key size={18} color="#6b7280" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               <input 

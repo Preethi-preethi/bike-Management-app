@@ -1,12 +1,20 @@
 import React from 'react';
 
 const models = [
-  { name: 'Pulsar NS200', type: 'Street Fighter', img: 'sport_bike.png' },
   { name: 'Dominar 400', type: 'Sports Tourer', img: 'sport_bike.png' },
+  { name: 'Dominar 250', type: 'Sports Tourer', img: 'sport_bike.png' },
+  { name: 'Pulsar NS400Z', type: 'Street Fighter', img: 'sport_bike.png' },
+  { name: 'Pulsar N250', type: 'Street Fighter', img: 'sport_bike.png' },
   { name: 'Pulsar RS200', type: 'Race Sport', img: 'sport_bike.png' },
-  { name: 'Avenger 220', type: 'Cruiser', img: 'cruiser_bike.png' },
-  { name: 'Chetak EV', type: 'Electric Scooter', img: 'chetak_logo.png' },
-  { name: 'Pulsar N160', type: 'Naked Street', img: 'sport_bike.png' }
+  { name: 'Pulsar NS200', type: 'Street Fighter', img: 'sport_bike.png' },
+  { name: 'Pulsar N160', type: 'Street Fighter', img: 'sport_bike.png' },
+  { name: 'Pulsar 150', type: 'Commuter', img: 'sport_bike.png' },
+  { name: 'Avenger Cruise 220', type: 'Cruiser', img: 'cruiser_bike.png' },
+  { name: 'Avenger Street 160', type: 'Cruiser', img: 'cruiser_bike.png' },
+  { name: 'Freedom 125 CNG', type: 'Commuter', img: 'sport_bike.png' },
+  { name: 'Platina 110', type: 'Commuter', img: 'sport_bike.png' },
+  { name: 'CT 110X', type: 'Commuter', img: 'sport_bike.png' },
+  { name: 'Chetak Premium 2024', type: 'Electric Scooter', img: 'chetak_logo.png' }
 ];
 
 export default function SupportedModels() {
@@ -18,7 +26,7 @@ export default function SupportedModels() {
           <p className="text-xl text-slate-500 max-w-2xl mx-auto">Our telemetry systems and mechanics are fully optimized for the complete Bajaj lineup.</p>
         </div>
 
-        <div className="relative overflow-hidden w-full max-w-full group mt-8">
+        <div className="relative overflow-hidden w-full max-w-full group mt-8 py-4">
           <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-brand-surface/20 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-brand-surface/20 to-transparent z-10 pointer-events-none"></div>
           

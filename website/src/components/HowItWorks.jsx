@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 px-6 relative z-10">
+    <section id="how-it-works" className="scroll-mt-24 py-24 px-6 relative z-10">
       <div className="container mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-space font-bold mb-6">Service Protocol <span className="text-accent-neon">Activation</span></h2>

@@ -80,7 +80,7 @@ export default function Testimonials() {
   if (testimonials.length === 0) return null;
 
   return (
-    <section id="testimonials" className="py-24 px-6 relative z-10 border-t border-slate-200 bg-brand-surface/30">
+    <section id="testimonials" className="scroll-mt-24 py-24 px-6 relative z-10 border-t border-slate-200 bg-brand-surface/30">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">

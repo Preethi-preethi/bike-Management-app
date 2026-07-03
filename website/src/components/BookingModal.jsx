@@ -111,6 +111,7 @@ export default function BookingModal({ isOpen, onClose }) {
     otherComplaint: ''
   });
 
+  const [isLocating, setIsLocating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [jobCardNo, setJobCardNo] = useState('');
   const [rating, setRating] = useState(0);
@@ -132,6 +133,34 @@ export default function BookingModal({ isOpen, onClose }) {
     } else {
       setOtpSent(true);
     }
+  };
+
+  const handleAutoLocate = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+    setIsLocating(true);
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      try {
+        const { latitude, longitude } = position.coords;
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+        const data = await res.json();
+        if (data && data.display_name) {
+          setFormData(prev => ({ ...prev, address: data.display_name }));
+        } else {
+          setFormData(prev => ({ ...prev, address: `${latitude}, ${longitude}` }));
+        }
+      } catch (err) {
+        console.error("Error fetching location", err);
+        alert("Failed to auto-locate. Please enter manually.");
+      } finally {
+        setIsLocating(false);
+      }
+    }, (error) => {
+      setIsLocating(false);
+      alert("Unable to retrieve your location. " + error.message);
+    });
   };
 
   const handleVerifyOTP = async () => {
@@ -291,6 +320,20 @@ export default function BookingModal({ isOpen, onClose }) {
                     <Phone size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input type="tel" name="phoneNumber" required className="w-full p-3 pl-10 rounded-xl border border-slate-200 bg-white/90 focus:ring-2 focus:ring-accent-neon outline-none transition-all" placeholder="+91 9876543210" value={formData.phoneNumber} onChange={handleChange} />
                   </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Customer Location (Address) *</label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <MapPin size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input type="text" name="address" required className="w-full p-3 pl-10 rounded-xl border border-slate-200 bg-white/90 focus:ring-2 focus:ring-accent-neon outline-none transition-all" placeholder="Enter your full address" value={formData.address} onChange={handleChange} />
+                  </div>
+                  <button type="button" onClick={handleAutoLocate} disabled={isLocating} className="px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium transition-colors border border-slate-200 flex items-center gap-2 whitespace-nowrap text-sm disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+                    {isLocating ? 'Locating...' : 'Auto Locate'}
+                  </button>
                 </div>
               </div>
 

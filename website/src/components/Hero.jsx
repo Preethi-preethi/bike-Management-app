@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Hero({ onOpenBookingModal }) {
   return (
-    <section className="relative pt-28 md:pt-32 pb-10 md:pb-24 px-6 flex min-h-screen md:min-h-[90vh]">
+    <section className="relative pt-36 md:pt-48 pb-10 md:pb-24 px-6 flex min-h-screen md:min-h-[90vh]">
       <div className="container mx-auto z-10 relative flex flex-col md:flex-row items-center gap-4 lg:gap-8 my-auto">
         <div className="flex-1 text-left">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-space font-bold tracking-tighter mb-4 md:mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>

@@ -144,7 +144,7 @@ export default function BookingModal({ isOpen, onClose }) {
     navigator.geolocation.getCurrentPosition(async (position) => {
       try {
         const { latitude, longitude } = position.coords;
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&accept-language=en`);
         const data = await res.json();
         if (data && data.display_name) {
           setFormData(prev => ({ ...prev, address: data.display_name }));

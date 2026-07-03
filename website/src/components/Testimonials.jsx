@@ -96,15 +96,17 @@ export default function Testimonials() {
               onClick={() => setActiveIndex(index)}
               className={`absolute w-full max-w-2xl transition-all duration-700 ease-in-out cursor-pointer ${getSlideClasses(index)}`}
             >
-              <div className="glass-panel p-6 sm:p-8 md:p-10 border border-slate-200/80 hover:border-accent-neon/50 shadow-2xl transition-colors bg-white/80 rounded-3xl">
-                <div className="flex gap-1 mb-6 text-accent-neon">
+              <div className="glass-panel p-6 sm:p-8 md:p-10 border border-slate-200/80 hover:border-accent-neon/50 shadow-2xl transition-colors bg-white/80 rounded-3xl min-h-[280px] flex flex-col justify-between">
+                <div>
+                  <div className="flex gap-1 mb-6 text-accent-neon">
                   {[...Array(5)].map((_, i) => (
                     <svg key={i} xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill={i < t.rating ? "currentColor" : "none"} stroke="currentColor" strokeWidth={i < t.rating ? "0" : "2"}>
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>
                   ))}
                 </div>
-                <p className="text-lg md:text-xl text-slate-900 mb-6 italic font-light leading-relaxed">"{t.quote}"</p>
+                <p className="text-lg md:text-xl text-slate-900 mb-6 italic font-light leading-relaxed line-clamp-4">"{t.quote}"</p>
+                </div>
                 <div className="flex items-center gap-4">
                   <div className={`w-14 h-14 rounded-full bg-gradient-to-br flex items-center justify-center font-bold text-white shadow-lg ${t.color}`}>
                     {t.initials}

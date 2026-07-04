@@ -28,7 +28,7 @@ export default function Navbar({ onOpenBookingModal }) {
           <a href="#testimonials" className="hover:text-slate-900 transition-colors">Testimonials</a>
         </div>
         <div className="flex gap-4 items-center">
-          <button onClick={onOpenBookingModal} className="btn-premium rounded-full text-xs px-4 py-2 md:text-sm md:px-6 md:py-2.5 whitespace-nowrap">Book a Service</button>
+          <button onClick={onOpenBookingModal} className="hidden sm:block btn-premium rounded-full text-xs px-4 py-2 md:text-sm md:px-6 md:py-2.5 whitespace-nowrap">Book a Service</button>
           
           {/* Mobile Menu Toggle */}
           <button className="md:hidden text-slate-800 p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -57,6 +57,7 @@ export default function Navbar({ onOpenBookingModal }) {
           <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-600 hover:text-brand-primary">Features</a>
           <a href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-600 hover:text-brand-primary">How it Works</a>
           <a href="#testimonials" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-600 hover:text-brand-primary">Testimonials</a>
+          <button onClick={() => { setIsMobileMenuOpen(false); onOpenBookingModal(); }} className="btn-premium rounded-xl text-base px-6 py-3 mt-2 w-full text-center">Book a Service</button>
         </div>
       )}
     </nav>

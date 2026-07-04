@@ -107,6 +107,8 @@ export default function BookingModal({ isOpen, onClose }) {
     district: '',
     branch: '',
     logisticsPreference: 'Self Drop-off',
+    pickupAddress: '',
+    dropAddress: '',
     complaints: [],
     otherComplaint: ''
   });
@@ -228,6 +230,8 @@ export default function BookingModal({ isOpen, onClose }) {
         job_card_no: generatedJobCardNo,
         services: [formData.serviceType],
         logistics_preference: formData.logisticsPreference,
+        pickup_address: formData.logisticsPreference === 'Pickup Required' ? formData.pickupAddress : null,
+        drop_address: formData.logisticsPreference === 'Pickup Required' ? formData.dropAddress : null,
         additional_notes: `Email: ${email} | Address: ${formData.address} | Preferred Date: ${formData.date} | Preferred Time: ${formData.time}`
       }]);
 
@@ -420,6 +424,25 @@ export default function BookingModal({ isOpen, onClose }) {
                     placeholder="Select Preference" 
                   />
                 </div>
+
+                {formData.logisticsPreference === 'Pickup Required' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 animate-fade-in-up">
+                    <div className="relative">
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Pick-up Address *</label>
+                      <div className="relative">
+                        <MapPin size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input type="text" name="pickupAddress" required className="w-full p-3 pl-10 rounded-xl border border-slate-200 bg-white/90 focus:ring-2 focus:ring-accent-neon outline-none transition-all" placeholder="Enter pick-up location" value={formData.pickupAddress} onChange={handleChange} />
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Drop-off Address *</label>
+                      <div className="relative">
+                        <MapPin size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input type="text" name="dropAddress" required className="w-full p-3 pl-10 rounded-xl border border-slate-200 bg-white/90 focus:ring-2 focus:ring-accent-neon outline-none transition-all" placeholder="Enter drop-off location" value={formData.dropAddress} onChange={handleChange} />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="border-t border-slate-100 pt-4 mt-4">

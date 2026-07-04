@@ -16,7 +16,7 @@ function App() {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="min-h-screen bg-brand relative overflow-x-hidden text-slate-900 font-inter">
+    <div className="min-h-screen bg-brand relative text-slate-900 font-inter">
       <div className="ambient-orb bg-accent-neon/30 w-[800px] h-[800px] top-[-200px] left-[-200px]"></div>
       <div className="ambient-orb bg-accent-hover/30 w-[600px] h-[600px] bottom-[-100px] right-[-100px]" style={{ animationDelay: '2s' }}></div>
 
